@@ -1,0 +1,93 @@
+
+/* Definindo padroões de medidas no site
+para estilizarmos sem problemas */
+body, ul, li, p{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    font-size: 1.2rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* Estilizando de Maneira geral os elementos*/
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+
+h1{
+    text-align: center;
+    margin-top: 100px;
+
+}
+
+/*Deixando a imagem responsiva 
+queremos que elas aumentem no maximo a 100% do 
+tamanho do container*/
+
+img{
+    max-width: 100%;
+    display: block;
+}
+
+/*###########################################################*/
+
+/* estilizando o header */
+
+.header{
+    background-color: #1d1e20;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.menu{
+    display: flex;
+}
+
+
+.menu li{
+    margin-left: 10px;
+}
+
+.menu li a{
+    display: block;
+    padding: 10px;
+}
+
+/* ###################################################### */
+
+
+/*CSS FLEX BOX 1 */
+
+.flex{
+    display: flex; /* Se deixarmos apenas assim, os elementos vao ficar um do lado do outro sem quebras */
+    flex-wrap: wrap; /*Garante a quebra */
+    /* Queremos também segurar o tamanho do container, para ele
+    nao expandir até o infinito */
+    max-width: 800px;
+    /* Deixando o margin dessa forma, os itens irão se alinhar
+    ao centro quando passar do max-width definido */
+    margin: 0 auto;
+}
+
+/* Queremos então que os itens tenham um tamanho minimo */
+
+.flex > div{
+    /* flex: Grow Shrink Basis */
+    /* Queremos que eles se expandam, que ele possa ficar menor, e vamos querer que a base dele seja 200px
+    caso ele nao consiga ficar com 200px, então ele ira quebrar 
+    e para isso devemos definir em .flex o flex-wrap: wrap*/
+    flex: 1 1 200px;
+    margin: 10px;
+}
+
+
+
+
+

@@ -1,0 +1,226 @@
+
+/* Definindo padroões de medidas no site
+para estilizarmos sem problemas */
+body, ul, li, p{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    font-size: 1.2rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    margin-bottom: 100px;
+}
+/* Estilizando de Maneira geral os elementos*/
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+
+h1{
+    text-align: center;
+    margin-top: 100px;
+
+}
+
+/*Deixando a imagem responsiva 
+queremos que elas aumentem no maximo a 100% do 
+tamanho do container*/
+
+img{
+    max-width: 100%;
+    display: block;
+}
+
+/*###########################################################*/
+
+/* estilizando o header */
+
+.header{
+    background-color: #1d1e20;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.menu{
+    display: flex;
+}
+
+
+.menu li{
+    margin-left: 10px;
+}
+
+.menu li a{
+    display: block;
+    padding: 10px;
+}
+
+/* ###################################################### */
+
+
+/*CSS FLEX BOX 1 */
+
+.flex{
+    display: flex; /* Se deixarmos apenas assim, os elementos vao ficar um do lado do outro sem quebras */
+    flex-wrap: wrap; /*Garante a quebra */
+    /* Queremos também segurar o tamanho do container, para ele
+    nao expandir até o infinito */
+    max-width: 800px;
+    /* Deixando o margin dessa forma, os itens irão se alinhar
+    ao centro quando passar do max-width definido */
+    margin: 0 auto;
+}
+
+/* Queremos então que os itens tenham um tamanho minimo */
+
+.flex > div{
+    /* flex: Grow Shrink Basis */
+    /* Queremos que eles se expandam, que ele possa ficar menor, e vamos querer que a base dele seja 200px
+    caso ele nao consiga ficar com 200px, então ele ira quebrar 
+    e para isso devemos definir em .flex o flex-wrap: wrap*/
+    flex: 1 1 200px;
+    margin: 10px;
+}
+
+
+/* CSS GRID 1*/
+
+.grid1{
+    /* Para definirmos uma grid, devemos definir seu display como grid */
+    display: grid;
+    /* precisamos então dividir em quantas colunas nossa grid baseada em quantos elemtnso tempos */
+    grid-template-columns: repeat(3, 1fr);
+    /* Segurando o container!!! 
+    iremos deixar o max-width em 780 em e vez de 800 para
+    alinhar com o flexbox anterior, pois no flexbox há a soma de
+    margin com padding totalizando 20px internos de recuo*/
+    max-width: 780px;
+    margin: 0 auto;
+    /* Queremos entao dar um espaçamento entre os itens */
+    grid-gap: 20px;
+}
+
+
+/* Queremos entao estilizar o nosso grid
+Poderiamos criar uma classe para cada estilo da grid
+ou podemos utilizar os recursos do css */
+
+
+/* Conseguimos acessar os filhos de uma grid */
+/*Queremos então adicionar um estilo diferente a partir do 
+quinto item da nossa grid */
+/* utilizaremos o (n+N) que especifica que queremos pegar
+no total de items da grid (n) a partir da posição N
+ou seja, sendo uma grid de 10 posições e queremos selecionar 
+os itens a partir da posicao 5, fazemos (n+5), pegando um total
+de 6 itens*/
+.grid1 > div:nth-child(n+4){
+    /* Queremos então transformar esses filhos em uma grid */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+    align-items: center;
+}
+
+.grid1 > div.anuncio{
+    grid-column: 1;
+    grid-row: 2 / 5;
+    display: block;
+}
+
+
+@media (max-width: 600px){
+    .grid1{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .grid1 > div:nth-child(n+4){
+        display: block;
+    }
+
+    .grid1 > div.anuncio{
+        grid-column: auto;
+        grid-row: auto;
+        order: -1;
+    }
+}
+
+
+/*CSS GRID 2 */
+
+.grid2{
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    grid-gap: 20px;
+    max-width: 800px;
+    padding: 10px;
+    margin: 0 auto;
+}
+
+.sidebar > div{
+    margin-bottom: 10px;
+}
+
+/* Na parte do responsivo, poderiamos fazer o seguinte: */
+@media (max-width: 600px){
+    .grid2{
+        grid-template-columns: 1fr;
+    }
+    .sidebar{
+        display: flex;
+        overflow: scroll;
+    }
+    .sidebar > div {
+        flex: 1 0 200px;
+        margin: 0 10px;
+    }
+}
+
+
+/* Section GRID 3 */
+
+.grid3{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-gap: 20px;
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 10px;
+}
+
+.grid3-item:nth-child(1){
+    grid-row: 1/3;
+}
+
+
+/* Posicionaremos então a legenda para dentro da imagem */
+.grid3-item{
+    display: grid;
+}
+
+
+/* Queremos posicionar a nossa imagem na coluna 1 */
+.grid3-item img{
+    grid-column: 1;
+    /* Dividindo a imagem */
+    grid-row: 1/3;
+    align-self: end;
+}
+
+/* Como colocarmos o P por cima da imagem???
+Podemos Dividir o container da imagem em 2 linhas, tendo tentao
+a primeira linha pegando a imagem total e a segunda o p */
+.grid3-item p{
+    background: rgba(0,0,0,0.6);
+    padding: 10px;
+    color: white;
+    grid-column: 1;
+    grid-row: 2;
+    align-self: end;
+}
